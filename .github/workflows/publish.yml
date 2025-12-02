@@ -131,4 +131,6 @@ jobs:
 
       - run: |
           cd packages/tauri
-          bun tauri build --target ${{ matrix.settings.target }} -v
+          cargo install tauri-cli --git https://github.com/tauri-apps/tauri --branch feat/truly-portable-appimage
+          TAURI_BUNDLER_NEW_APPIMAGE_FORMAT="true" cargo tauri build --target ${{ matrix.settings.target }} -v
+          # bun tauri build
