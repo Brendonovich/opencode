@@ -105,7 +105,7 @@ jobs:
 
       - name: Publish
         run: |
-          ./packages/tauri/script/publish.ts
+          ./packages/tauri/scripts/publish.ts
         env:
           OPENCODE_BUMP: ${{ inputs.bump }}
           OPENCODE_VERSION: ${{ inputs.version }}
