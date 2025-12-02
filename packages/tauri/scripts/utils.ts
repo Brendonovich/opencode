@@ -36,5 +36,8 @@ export function getCurrentSidecar() {
 
 export async function copyBinaryToSidecarFolder(source: string) {
   await $`mkdir -p src-tauri/binaries`
-  await $`cp ${source} src-tauri/binaries/opencode-${RUST_TARGET}`
+  const dest = `src-tauri/binaries/opencode-${RUST_TARGET}`;
+  await $`cp ${source} ${dest}`
+
+  console.log(`Copied ${source} to ${dest}`)
 }
