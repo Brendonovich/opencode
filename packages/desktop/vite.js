@@ -13,7 +13,7 @@ export default [
       return {
         resolve: {
           alias: {
-            "@": path.resolve(fileURLToPath(import.meta.url), "../src"),
+            "@": fileURLToPath(new URL("../src", import.meta.url)),
           },
         },
       }
