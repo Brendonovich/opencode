@@ -17,6 +17,6 @@ if(sidecarConfig.assetExt === "tar.gz") {
   await $`unzip -o ${dir}/${sidecarConfig.ocBinary}.${sidecarConfig.assetExt} -d ${dir}`;
 }
 
-await copyBinaryToSidecarFolder(`${dir}/opencode`)
+await copyBinaryToSidecarFolder(`${dir}/opencode${process.platform.os === "win32" ? ".exe" : ""}`)
 
 await $`bun tauri build`
