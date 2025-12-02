@@ -81,7 +81,7 @@ jobs:
   #         OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
 
   publish-tauri:
-    needs: publish
+    # needs: publish
     strategy:
       matrix:
         settings:
