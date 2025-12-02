@@ -141,4 +141,4 @@ jobs:
         if: matrix.settings.host != 'ubuntu-latest'
         run: |
           cd packages/tauri
-          bun tauri build
+          bun tauri build --target ${{ matrix.settings.target }} -v
