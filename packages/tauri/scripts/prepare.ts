@@ -2,7 +2,7 @@
 
 import { $ } from "bun";
 
-import { copyBinaryToSidecarFolder, getCurrentSidecar, RUST_TARGET } from "./utils";
+import { copyBinaryToSidecarFolder, getCurrentSidecar } from "./utils";
 
 const sidecarConfig = getCurrentSidecar();
 
@@ -18,5 +18,3 @@ if(sidecarConfig.assetExt === "tar.gz") {
 }
 
 await copyBinaryToSidecarFolder(`${dir}/opencode${process.platform === "win32" ? ".exe" : ""}`)
-
-await $`bun tauri build --target ${RUST_TARGET}`

@@ -9,7 +9,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "tauri": "tauri",
-    "publish": "bun ./scripts/publish.ts"
+    "prepare": "bun ./scripts/prepare.ts"
   },
   "dependencies": {
     "@opencode-ai/desktop": "workspace:*",

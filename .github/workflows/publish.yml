@@ -114,10 +114,10 @@ jobs:
         with:
           targets: ${{ matrix.settings.target }}
 
-      - name: Publish
+      - name: Prepare
         run: |
           cd packages/tauri
-          bun run publish
+          bun run prepare
         env:
           OPENCODE_BUMP: ${{ inputs.bump }}
           OPENCODE_VERSION: ${{ inputs.version }}
@@ -128,3 +128,5 @@ jobs:
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           RUST_TARGET: ${{ matrix.settings.target }}
           GH_TOKEN: ${{ github.token }}
+
+      - run: bun tauri build --target ${{ matrix.settings.target }}
