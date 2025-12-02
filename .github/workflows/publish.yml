@@ -129,8 +129,16 @@ jobs:
           RUST_TARGET: ${{ matrix.settings.target }}
           GH_TOKEN: ${{ github.token }}
 
-      - run: |
+      - name: Build
+        if: matrix.settings.host == 'ubuntu-latest'
+        run: |
           cd packages/tauri
           cargo install tauri-cli --git https://github.com/tauri-apps/tauri --branch feat/truly-portable-appimage
           TAURI_BUNDLER_NEW_APPIMAGE_FORMAT="true" cargo tauri build --target ${{ matrix.settings.target }} -v
           # bun tauri build
+
+      - name: Build
+        if: matrix.settings.host != 'ubuntu-latest'
+        run: |
+          cd packages/tauri
+          bun tauri build
