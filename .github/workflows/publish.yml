@@ -117,7 +117,7 @@ jobs:
       - name: Prepare
         run: |
           cd packages/tauri
-          bun run prepare
+          bun ./scripts/prepare.ts
         env:
           OPENCODE_BUMP: ${{ inputs.bump }}
           OPENCODE_VERSION: ${{ inputs.version }}
