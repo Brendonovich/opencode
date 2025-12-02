@@ -129,4 +129,6 @@ jobs:
           RUST_TARGET: ${{ matrix.settings.target }}
           GH_TOKEN: ${{ github.token }}
 
-      - run: bun tauri build --target ${{ matrix.settings.target }}
+      - run: |
+          cd packages/tauri
+          bun tauri build --target ${{ matrix.settings.target }}
