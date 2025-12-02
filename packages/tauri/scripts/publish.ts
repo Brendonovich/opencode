@@ -18,3 +18,5 @@ if(sidecarConfig.assetExt === "tar.gz") {
 }
 
 await copyBinaryToSidecarFolder(`${dir}/opencode`)
+
+await $`bun tauri build`
