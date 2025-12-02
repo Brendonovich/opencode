@@ -1,6 +1,7 @@
 import solidPlugin from "vite-plugin-solid"
 import tailwindcss from "@tailwindcss/vite"
 import path from "path"
+import { fileURLToPath } from "url"
 
 /**
  * @type {import("vite").PluginOption}
@@ -12,7 +13,7 @@ export default [
       return {
         resolve: {
           alias: {
-            "@": path.resolve(new URL(import.meta.url).pathname, "../src"),
+            "@": path.resolve(fileURLToPath(import.meta.url), "../src"),
           },
         },
       }
