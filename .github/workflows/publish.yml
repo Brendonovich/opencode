@@ -150,7 +150,7 @@ jobs:
       - name: Copy artifact bundles
         run: |
           cd packages/tauri
-          bun ./scripts/publish.ts
+          bun ./scripts/copy-bundles.ts
         env:
           RUST_TARGET: ${{ matrix.settings.target }}
 
