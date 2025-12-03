@@ -154,4 +154,4 @@ jobs:
         env:
           RUST_TARGET: ${{ matrix.settings.target }}
 
-      - uses: .github/actions/upload-tauri-artifacts
+      - uses: ./.github/actions/upload-tauri-artifacts
