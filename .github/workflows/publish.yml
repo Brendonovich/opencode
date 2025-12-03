@@ -141,6 +141,8 @@ jobs:
         uses: tauri-apps/tauri-action@390cbe447412ced1303d35abe75287949e43437a
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_BUNDLER_NEW_APPIMAGE_FORMAT: true
         with:
+          projectPath: packages/tauri
           uploadWorkflowArtifacts: true
-          tauriScript: ${{ (matrix.settings.host == 'ubuntu-latest' && 'TAURI_BUNDLER_NEW_APPIMAGE_FORMAT="true" cargo tauri') || '' }}
+          tauriScript: ${{ (matrix.settings.host == 'ubuntu-latest && 'cargo tauri') || '' }}
