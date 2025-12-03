@@ -138,7 +138,7 @@ jobs:
         if: matrix.settings.host != 'ubuntu-latest'
 
       - name: Build and upload artifacts
-        uses: tauri-apps/tauri-action@390cbe4
+        uses: tauri-apps/tauri-action@390cbe447412ced1303d35abe75287949e43437a
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
