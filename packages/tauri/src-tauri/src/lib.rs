@@ -157,13 +157,18 @@ pub async fn run() {
                     None
                 };
 
-                WebviewWindow::builder(&app, "main", WebviewUrl::App("/".into()))
-                    .title("OpenCode")
-                    .inner_size(800.0, 600.0)
-                    .decorations(true)
-                    .hidden_title(true)
-                    .build()
-                    .expect("Failed to create window");
+                let mut window_builder =
+                    WebviewWindow::builder(&app, "main", WebviewUrl::App("/".into()))
+                        .title("OpenCode")
+                        .inner_size(800.0, 600.0)
+                        .decorations(true);
+
+                #[cfg(target_os = "macos")]
+                {
+                    window_builder = window_builder.hidden_title(true);
+                }
+
+                window_builder.build().expect("Failed to create window");
 
                 app.manage(ServerState(Arc::new(Mutex::new(child))));
             });
