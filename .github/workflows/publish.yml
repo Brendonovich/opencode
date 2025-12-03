@@ -135,7 +135,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - run: cargo install tauri-cli --git https://github.com/tauri-apps/tauri --branch feat/truly-portable-appimage
-        if: matrix.settings.host != 'ubuntu-latest'
+        if: matrix.settings.host == 'ubuntu-latest'
 
       - name: Build and upload artifacts
         uses: tauri-apps/tauri-action@390cbe447412ced1303d35abe75287949e43437a
