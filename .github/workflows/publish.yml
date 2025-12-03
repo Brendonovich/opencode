@@ -150,7 +150,6 @@ jobs:
       - name: Publish
         run: |
           cd packages/tauri
-          bun ./scripts/organise-build-artifacts.ts
           bun ./scripts/publish.ts
         env:
           RUST_TARGET: ${{ matrix.settings.target }}
