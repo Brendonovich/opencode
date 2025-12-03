@@ -146,3 +146,4 @@ jobs:
           projectPath: packages/tauri
           uploadWorkflowArtifacts: true
           tauriScript: ${{ (matrix.settings.host == 'ubuntu-latest' && 'cargo tauri') || '' }}
+          args: --target ${{ matrix.settings.target }}
