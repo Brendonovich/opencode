@@ -147,10 +147,11 @@ jobs:
           cd packages/tauri
           bun tauri build --target ${{ matrix.settings.target }} -v
 
-      - name: Publish
+      - name: Copy artifact bundles
         run: |
           cd packages/tauri
           bun ./scripts/publish.ts
         env:
           RUST_TARGET: ${{ matrix.settings.target }}
-          GH_TOKEN: ${{ github.token }}
+
+      - uses: .github/actions/upload-tauri-artifacts

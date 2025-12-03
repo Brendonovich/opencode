@@ -12,15 +12,6 @@
   },
   "app": {
     "withGlobalTauri": true,
-    "windows": [
-      {
-        "title": "OpenCode",
-        "width": 800,
-        "height": 600,
-        "decorations": true,
-        "hiddenTitle": true
-      }
-    ],
     "security": {
       "csp": null
     },

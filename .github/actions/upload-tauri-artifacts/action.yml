@@ -1,0 +1,4 @@
+name: "Upload Tauri Artifacts"
+runs:
+  using: node20
+  main: dist/index.js

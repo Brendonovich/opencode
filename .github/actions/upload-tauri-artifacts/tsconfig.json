@@ -1,0 +1,28 @@
+{
+  // File Inclusion
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"],
+
+  "compilerOptions": {
+    // Project options
+    "allowJs": true,
+    "isolatedModules": true,
+    "lib": ["esnext"],
+    "target": "ES2017",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+
+    // Strict Checks
+    "strict": true,
+
+    // Module Resolution
+    "esModuleInterop": true,
+
+    // Advanced
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "types": ["node"]
+  }
+}
