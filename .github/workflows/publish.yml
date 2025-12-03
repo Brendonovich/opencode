@@ -114,6 +114,10 @@ jobs:
         with:
           targets: ${{ matrix.settings.target }}
 
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: packages/tauri/src-tauri
+
       - name: Prepare
         run: |
           cd packages/tauri
