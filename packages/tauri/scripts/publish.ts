@@ -13,16 +13,35 @@ await $`mkdir -p ${BUNDLES_OUT_DIR}`
 
 await $`cp -r ${BUNDLE_DIR}/*/OpenCode* ${BUNDLES_OUT_DIR}`
 
+const bundles = await (async () => {
+  const ret: {name: string, files: string[]}[] = [];
+
+  const bundles = await fs.readdir(BUNDLES_OUT_DIR, { withFileTypes: true })
+
+  for(const bundle of bundles) {
+    let files: string[] = [];
+
+    if(bundle.isDirectory()) {
+      const bundleContents = fs.readdir(path.join(bundle.parentPath, bundle.name), { recursive: true, withFileTypes: true });
+      const a = await bundleContents.then(ents => ents.filter(d => d.isFile()).map(ent => path.join(ent.parentPath, ent.name)));
+      files.push(...a)
+    } else {
+      files.push(path.join(bundle.parentPath, bundle.name))
+    }
+
+    ret.push({name: bundle.name, files})
+  }
+
+  return ret
+})();
+
+console.log("Prepared bundles for publishing:", bundles)
+
 if(Bun.env.GITHUB_ACTIONS) {
   const { DefaultArtifactClient } = await import("@actions/artifact")
   const artifactClient = new DefaultArtifactClient()
 
-  const bundles = await fs.readdir(BUNDLE_DIR)
-
   for(const bundle of bundles) {
-    const files = await fs.readdir(bundle, { recursive: true, withFileTypes: true })
-      .then(ents => ents.filter(d => d.isFile()).map(ent => path.join(ent.parentPath, ent.name)))
-
-    await artifactClient.uploadArtifact(bundle, files, BUNDLES_OUT_DIR);
+    await artifactClient.uploadArtifact(bundle.name, bundle.files, BUNDLES_OUT_DIR);
   }
 }

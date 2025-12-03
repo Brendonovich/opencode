@@ -25,10 +25,10 @@ export const SIDECAR_BINARIES: Array<{ rustTarget: string; ocBinary: string, ass
 
 export const RUST_TARGET = Bun.env.RUST_TARGET
 
-export function getCurrentSidecar() {
-  if (!RUST_TARGET) throw new Error("RUST_TARGET not set")
+export function getCurrentSidecar(target = RUST_TARGET) {
+  if (!target && !RUST_TARGET) throw new Error("RUST_TARGET not set")
 
-  const binaryConfig = SIDECAR_BINARIES.find((b) => b.rustTarget === RUST_TARGET)
+  const binaryConfig = SIDECAR_BINARIES.find((b) => b.rustTarget === target)
   if (!binaryConfig) throw new Error(`Sidecar configuration not available for Rust target '${RUST_TARGET}'`)
 
   return binaryConfig
