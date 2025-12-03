@@ -134,24 +134,13 @@ jobs:
           RUST_TARGET: ${{ matrix.settings.target }}
           GH_TOKEN: ${{ github.token }}
 
-      - name: Build
-        if: matrix.settings.host == 'ubuntu-latest'
-        run: |
-          cd packages/tauri
-          cargo install tauri-cli --git https://github.com/tauri-apps/tauri --branch feat/truly-portable-appimage
-          TAURI_BUNDLER_NEW_APPIMAGE_FORMAT="true" cargo tauri build --target ${{ matrix.settings.target }} -v
-
-      - name: Build
+      - run: cargo install tauri-cli --git https://github.com/tauri-apps/tauri --branch feat/truly-portable-appimage
         if: matrix.settings.host != 'ubuntu-latest'
-        run: |
-          cd packages/tauri
-          bun tauri build --target ${{ matrix.settings.target }} -v
 
-      - name: Copy artifact bundles
-        run: |
-          cd packages/tauri
-          bun ./scripts/copy-bundles.ts
+      - name: Build and upload artifacts
+        uses: tauri-apps/tauri-action@v1
         env:
-          RUST_TARGET: ${{ matrix.settings.target }}
-
-      - uses: ./.github/actions/upload-tauri-artifacts
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          uploadWorkflowArtifacts: true
+          tauriScript: ${{ (matrix.settings.host == 'ubuntu-latest' && 'TAURI_BUNDLER_NEW_APPIMAGE_FORMAT="true" cargo tauri') || '' }}
