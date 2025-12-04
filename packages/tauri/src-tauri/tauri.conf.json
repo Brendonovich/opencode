@@ -21,6 +21,12 @@
     "active": true,
     "targets": ["deb", "rpm", "appimage", "dmg", "app", "nsis"],
     "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"],
-    "externalBin": ["sidecars/opencode"]
+    "externalBin": ["sidecars/opencode"],
+    "createUpdaterArtifacts": true
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEQ2MjAwMDFGN0Y2MDdCRDgKUldUWWUyQi9Id0FnMW05Zjk1cGtmSzlyWUM3ZUptWC95OXdFQ1dEKzlmZlhDSnF2NVExU0t4bXAK"
+    }
   }
 }
